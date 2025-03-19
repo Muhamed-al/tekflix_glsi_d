@@ -15,7 +15,7 @@ export class MovieListComponent {
 
   selectCategory(cat : string){
     this.selectedCategory = cat;
-    console.log("Selected Category : " , this.selectedCategory)
+    console.log("Selected Category : " , this.selectedCategory);
   }
 
 

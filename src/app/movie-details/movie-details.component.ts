@@ -10,35 +10,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './movie-details.component.css'
 })
 export class MovieDetailsComponent {
-
-  showModal = false;
-  films : Film[] = FILMS;
   filmId ?: any;
-  film ?: Film;
-  safeTrailerUrl ? : SafeResourceUrl;
-  constructor(private activatedRoute : ActivatedRoute , 
-              private domSanitizer : DomSanitizer
-              ){}
+  films : Film[] = FILMS;
+  film ? : Film;
+  constructor(private activatedRoute : ActivatedRoute){}
 
   ngOnInit(){
-    console.log("Inside ngOnInit . . .");
     this.filmId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("Film ID : " , this.filmId);
-    this.film = this.films.find(f=> f.id === parseInt(this.filmId));
-    console.log("Film : " , this.film);
-  }
+    this.film = this.films.find(f => f.id === parseInt(this.filmId));
+    console.log("Film : " , this.film)
 
-  openModal(){
-    if(this.film && this.film.trailerUrl){
-      const embedUrl =this.film.trailerUrl.replace("watch?v=" , "embed/");
-      // https://www.youtube.com/embed/1pHDWnXmK7Y
-      this.safeTrailerUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(embedUrl);
-      this.showModal = true;
-    }
-  }
-
-  closeModal(){
-    this.showModal = false;
   }
 
 }
